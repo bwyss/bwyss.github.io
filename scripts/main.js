@@ -40,6 +40,7 @@ map.on('style.load', function() {
 var selAttribute = 'QHHNOBATH';
 
 $('#breakSelection').change(function() {
+    map.removeLayer('borders');
     if ($('#breakSelection').val() == '1') {
         try {
             map.removeLayer('ec-layer1');
@@ -167,6 +168,7 @@ var colorsPal = colorsPalRed;
 
 
 $('#colorSelection').change(function() {
+    map.removeLayer('borders');
     if ($('#colorSelection').val() === 'red') {
         try {
             map.removeLayer('ec-layer1');
@@ -353,6 +355,18 @@ function createLayer () {
         'filter': [
             '>=', selAttribute, 1.46
         ]
+    });
+
+    map.addLayer({
+        'id': 'borders',
+        'type': 'line',
+        'source': 'ecuador',
+        "source-layer": "eq-simple",
+        'paint': {
+            'line-color': "#000",
+            'line-opacity': 0.3,
+            'line-blur': 4
+        }
     });
 /*
     // text lables
